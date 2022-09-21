@@ -19,27 +19,28 @@
         <div class="flex flex-wrap justify-center items-center w-10/12  md:w-6/12">
 
             {% for profile in profiles %}
-            <div class="w-32 h-32 m-4  bg-blue-500 rounded-md cursor-pointer">
-                <a href="#">
-                    <div class="w-32 h-32 m-4 flex-col justify-center align-center bg-blue-500 rounded-md cursor-pointer">
-                        <p class="text-6xl">
-                            {{profile.name | slice:":1"}}
-                        </p>
-                        <p class="text-lg">
-                            {{profile.name}}
-                        </p>
-                    </div>
-                </a>
-            </div>
+            <a href="{% url 'core:watch' profile_id=profile.uuid %}">
+            
+                <div class="w-32 h-32 m-4  bg-blue-500 flex justify-center items-center flex-col rounded-md cursor-pointer">
+                    <p class='text-6xl'>
+                        {{profile.name | slice:":1"}}
+                    </p>
+                    <p class='text-lg'>
+                        {{profile.name}}
+                    </p>
+                </div>
+            </a>
             {% endfor %}
                 
         </div>
 
         <!-- add new profile -->
         <div class="flex justify-center items-center">
-            <button class="px-4 py-2 rounded-md outline-none bg-gray-400 text-gray-100">
-                Add A New Profile
-            </button>
+            <a href="{% url 'core:profile_create' %}">
+                <button class="px-4 py-2 rounded-md outline-none bg-gray-400 text-gray-100">
+                    Add A New Profile
+                </button>
+            </a>
         </div>
     </section>
 {% endblock content %}    

@@ -2,7 +2,6 @@ import uuid
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-
 AGE_CHOICES=(
   ('All', 'All'),
   ('Kids', 'Kids')
@@ -26,6 +25,7 @@ class Profile(models.Model):
 class Movie(models.Model):
   title = models.CharField(max_length=255)
   description = models.TextField(blank=True, null=True)
+  full_description = models.TextField(blank=True, null=True)
   created_at = models.DateTimeField(auto_now_add=True)
   uuid = models.UUIDField(default=uuid.uuid4)
   type = models.CharField(max_length=10, choices=MOVIE_CHOICES)

@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .forms import ProfileForm
 from .models import Profile, Movie
+import random
 
 # Create your views here.
 
@@ -49,16 +50,19 @@ class ProfileCreate(View):
 @method_decorator(login_required,name='dispatch')
 class Watch(View):
     def get(self,request,profile_id,*args, **kwargs):
+        
         try:
             profile=Profile.objects.get(uuid=profile_id)
 
+            #filter by age restriction
             movies=Movie.objects.filter(age_limit=profile.age_limit)
 
+            #randomize default background video
             try:
-                showcase=movies[0]
+                rnd = random.randint(0, len(movies) - 1)
+                showcase = movies[rnd]
             except :
-                showcase=None
-            
+                showcase = None
 
             if profile not in request.user.profiles.all():
                 return redirect(to='core:profile_list')
