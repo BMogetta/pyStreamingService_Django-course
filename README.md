@@ -12,3 +12,6 @@ https://marketplace.visualstudio.com/items?itemName=batisteo.vscode-django
 
 create super user
 python3 manage.py createsuperuser
+
+docker build -t streaming .
+docker run -p 8000:8000 streaming
