@@ -55,7 +55,10 @@ class Watch(View):
             profile=Profile.objects.get(uuid=profile_id)
 
             #filter by age restriction
-            movies=Movie.objects.filter(age_limit=profile.age_limit)
+            if profile.age_limit == 'Kids':
+                movies = Movie.objects.filter(age_limit=profile.age_limit)
+            else:
+                movies = Movie.objects.all()
 
             #randomize default background video
             try:
