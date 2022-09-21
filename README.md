@@ -9,3 +9,6 @@ https://django-allauth.readthedocs.io/en/latest/installation.html
 `pip install django-allauth`
 
 https://marketplace.visualstudio.com/items?itemName=batisteo.vscode-django
+
+create super user
+python3 manage.py createsuperuser
